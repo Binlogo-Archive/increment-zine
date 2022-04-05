@@ -1,0 +1,21 @@
+
+[site]
+url = "http://localhost"
+name = "棒棒彬·数字科技参考·杂志"
+description = "分享个人技术见闻，棒棒彬的第二大脑突触"
+locale = "zh"
+menu = [
+  { name = "Github", url = "https://github.com/Binlogo/increment-zine" },
+]
+
+[theme]
+primary-color = "#FF7700"
+link-color = "#CC0000"
+background-image = "/static/flat-mountains.svg"
+footer-template = "templates/footer.html"
+
+[[season]]
+slug = "s1"
+number = 1
+title = "第一季"
+path = "content/season-1"
