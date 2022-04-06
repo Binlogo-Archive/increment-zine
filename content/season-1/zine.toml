@@ -8,3 +8,13 @@ cover = "/static/season-1/001/swift_cpp.jpeg"
 pub_date = "2021-09-25"
 publish = true
 featured = true
+
+[[article]]
+slug = "002"
+file = "002.md"
+title = "002｜CocoaPods 优化知多少？"
+author = "Binlogo"
+cover = "/static/season-1/002/cocoapods.png"
+pub_date = "2021-10-01"
+publish = true
+featured = true
