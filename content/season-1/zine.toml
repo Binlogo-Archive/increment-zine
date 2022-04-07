@@ -28,3 +28,13 @@ cover = "/static/season-1/003/telegram.jpeg"
 pub_date = "2021-10-09"
 publish = true
 featured = true
+
+[[article]]
+slug = "004"
+file = "004.md"
+title = "004｜编码即写作，思考到表达"
+author = "Binlogo"
+cover = "/static/season-1/004/think_write.png"
+pub_date = "2021-10-24"
+publish = true
+featured = true
