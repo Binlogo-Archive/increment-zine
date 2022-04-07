@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<title>002｜CocoaPods 优化知多少？</title>
+    <meta name="description" content="CodoaPods 优化, 开源软件架构, 认知偏差, 工程架构">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="002｜CocoaPods 优化知多少？">
+    <meta property="og:description" content="CodoaPods 优化, 开源软件架构, 认知偏差, 工程架构">
+    <meta name="twitter:title" content="002｜CocoaPods 优化知多少？">
+    <meta name="twitter:description" content="CodoaPods 优化, 开源软件架构, 认知偏差, 工程架构">
+
+<meta property="og:url" content="http://localhost/s1/002">
+    <meta property="twitter:url" content="http://localhost/s1/002">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="http://localhost/static/season-1/002/cocoapods.png">
+    <meta name="twitter:image" content="http://localhost/static/season-1/002/cocoapods.png">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="http://localhost/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="棒棒彬·数字科技参考·杂志 RSS" href="/feed.xml">
+    <style>
+      :root {
+          --primary-color: #FF7700;
+          --main-color: #ffffff;
+          --link-color: #CC0000;
+          --secondary-color: #eff3f7;
+      }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="bg-primary text-main font-bold text-center z-0" style="background-image: url('http://localhost/static/flat-mountains.svg')">
+    <header class="p-8 md:p-10">
+            <div class="text-4xl lg:text-5xl"><a href="http://localhost/">棒棒彬·数字科技参考·杂志</a></div>
+
+            <ul>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline"><a href="https://github.com/Binlogo/increment-zine">Github</a></li>
+                </ul>
+        </header>
+        <div class="w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+
+    <main class="pb-10 -translate-y-32
+                 md:-translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56
+                 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+            <div class="p-4 pb-10 md:p-8 md:pb-14 mx-4 my-6 bg-white 
+            shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="relative mx-2">
+        <a class="before:block before:absolute before:-inset-1 before:-skew-x-6 before:bg-primary relative inline-block
+                                transition sm:hover:scale-110 duration-500" href="http://localhost/s1">
+            <div class="relative text-main px-4">第一季</div>
+        </a>
+        <span class="ml-2 text-gray-700"> /  第 ⁨2⁩ 篇</span>
+    </div>
+    <div class="mt-4 mb-8 w-full border-dashed border-t border-slate-300"></div>
+    <div class="prose mx-auto">
+        <h1 class="text-center">002｜CocoaPods 优化知多少？</h1>
+        <div class="relative text-sm text-gray-400">
+            <span>2021-10-01</span>
+            <span class="absolute right-2">Binlogo</span>
+        </div>
+    </div>
+    <article class="prose mx-auto my-12">
+        <h1 id="一、前言" class="flex group">
+    <span>一、前言</span>
+    <a href="#一、前言" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1><h2 id="关键字" class="flex group">
+    <span>关键字</span>
+    <a href="#关键字" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<p>CodoaPods 优化, 开源软件架构, 认知偏差, 工程架构</p>
+<h2 id="见闻与碎碎念" class="flex group">
+    <span>见闻与碎碎念</span>
+    <a href="#见闻与碎碎念" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<ul>
+<li>
+<p>2011.10.05～2021.10.05，斯蒂夫·乔布斯逝世十周年，想起十年前那个高三，在紧张的备考之余，躲在桌子底下看《乔布斯传》，课间操广场听讲话时其他同学都拿着轻巧的单词书，而我却拿着这本沉重的书在狂读。“他改变了你”——这一点，在我身上的体现是真真切切地通过乔布斯的故事，而后才逐渐接触到他改变世界的那些伟大产品，他对产品的见地都值得一看再看，一品再品。</p>
+</li>
+<li>
+<p>工具：创造还是使用？—— 翻译 <a href="https://binlogo.github.io/Knowledge-Track/cs/programming-languages/swift/swift-cpp-interoperability.html">《编程语言设计：Swift 与 C++ 的互操作性》</a> 时，留意到其中大量采用“Swift or C++ user”的描述，对于编程语言的设计者而言，采用其进行软件开发的「创造者」就是这门编程语言的使用者。使用和创造，就是一体两面的。</p>
+</li>
+<li>
+<p>微信群可折叠了—— 虽迟但到，对于社群的消息处理有了一定效率的提升</p>
+</li>
+<li>
+<p><a href="https://s75w5y7vut.feishu.cn/docs/doccn3BatnScBJe7wD7K3S5poFf">《认知偏差知识手册》</a>—— 非常值得一看和收藏，了解些心理学知识非常有意思</p>
+</li>
+<li>
+<p>自从知道飞书出品了播客《<a href="https://www.xiaoyuzhoufm.com/podcast/606547c8e5c273d2a3689a3e?s=eyJ1IjogIjVlN2RkYTkwMGE3YmQ4MDljMmU4N2MxMSJ9">组织进化论</a>》后，基本路上的时间都用来听 Zara 和不同的组织聊天了，最近还发现了 Zara 的外部<a href="https://bytedance.feishu.cn/docs/doccn4sKBEWyyLPziLVyoaudpXd?from=from_copylink">博客</a>，窥见另一个人的视角是件非常奇妙的事。</p>
+</li>
+<li>
+<p>发现了一个有意思的项目管理工具：<a href="https://height.app/product#productivity">Height</a></p>
+</li>
+<li>
+<p>认识了 <a href="https://github.com/nvzqz">Nikolai Vazquez</a>，在 <a href="https://www.fullstory.com/">@fullstory</a> 折腾 iOS 和 Rust</p>
+</li>
+<li>
+<ul>
+<li><a href="https://github.com/nvzqz/swift-bindgen">nvzqz/swift-bindgen</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="二、技术新知" class="flex group">
+    <span>二、技术新知</span>
+    <a href="#二、技术新知" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1><h3 id="书籍" class="flex group">
+    <span>书籍</span>
+    <a href="#书籍" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://www.aosabook.org/en/index.html">The Architecture of Open Source Applications</a> —— 汇集诸多如 LLVM 等知名开源软件的架构设计案例学习</li>
+</ul>
+<h3 id="文章" class="flex group">
+    <span>文章</span>
+    <a href="#文章" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://mp.weixin.qq.com/s/gS9yC4HUWxi0vkjQPdo5tw">Alibaba iOS 工程架构腐化治理实践</a></li>
+</ul>
+<h3 id="开源" class="flex group">
+    <span>开源</span>
+    <a href="#开源" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://github.com/swift-server/async-http-client">AsyncHTTPClient</a> —— 基于 SwiftNIO 的 Http 客户端库</li>
+<li><a href="https://github.com/matklad/cargo-xtask/">cargo-xtask</a> - （rust-analyzer <a href="https://rust-analyzer.github.io/rust-analyzer/xtask/index.html">在用</a>的）构建辅助工具</li>
+<li><a href="https://github.com/muukii/MondrianLayout">MondrianLayout</a> - 类似 SwiftUI 风格的视图布局库</li>
+<li><a href="https://docs.tuist.io/">Tuist 🔧</a> - Xcode 工程生成、维护、交互的命令行工具</li>
+</ul>
+<h1 id="三、技术精选" class="flex group">
+    <span>三、技术精选</span>
+    <a href="#三、技术精选" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1>
+<p>上一期提到了一个 Rugby 这个 CocoaPods 缓存的一个小开源工具，其实国内外针对通过 CocoaPods 这个依赖工具链如何做二进制缓存支持已经有了诸多方案和讨论，结合前段时间的一些实践，分享下这个话题。</p>
+<div class="url-preview">
+ <div>工程效率优化：CocoaPods 优化 | 彬少の原野</div>
+ <div>记录工作与生活中的灵感💡与思考🤔</div>
+ <a href="https://binlogo.github.io/post/gong-cheng-xiao-lu-you-hua-cocoapods-you-hua/">https://binlogo.github.io/post/gong-cheng-xiao-lu-you-hua-cocoapods-you-hua/</a>
+</div>
+<hr />
+<p>感谢你的阅读，和我一起完成了本期的学习与成长。</p>
+<ul>
+<li>如果希望鼓励我，欢迎点赞、评论、<a href="https://www.yuque.com/binboy/increment-magzine">关注订阅</a>～</li>
+<li>如果觉得有收获，也欢迎分享给身边的朋友，邀他一起交流讨论</li>
+</ul>
+<p>我们下期见。</p>
+
+
+        </article>
+    <div class="my-4 w-full border-dashed border-t border-slate-300"></div>
+        <div class="flex flex-col md:flex-row">
+        <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="http://localhost/s1/001">
+                    上一篇：
+                    001｜看！Swift 与 C++ 的交互性
+                </a>
+            </div>
+    </div>
+</main>
+
+    <footer class="relative">
+        <div class="site-footer">
+    <div>
+        分享个人数字科技参考与见闻，<a href="https://binlogo.github.io/Knowledge-Track/">棒棒彬的第二大脑</a>突触，以知识增量的方式，从时间维度衍生的在线杂志
+    </div>
+    <div>
+        Copyright © 2022 <a href="https://github.com/Binlogo">@Binlogo</a>
+    </div>
+</div>
+<link rel="stylesheet" href="http://localhost/static/main.css">
+            <a href="https://github.com/zineland" 
+           class="absolute z-20 bottom-0 w-full text-center font-bold
+                  md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent
+                  bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+        </div>
+    </footer>
+</body>
+<script src="http://localhost/static/medium-zoom.min.js"></script>
+<script src="http://localhost/static/zine.js"></script>
+</html>
+

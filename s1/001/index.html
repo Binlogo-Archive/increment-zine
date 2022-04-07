@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<title>001｜看！Swift 与 C++ 的交互性</title>
+    <meta name="description" content="Swift, C++, 编程语言设计, 系统编程安全, Dotfiles, 编译优化, CodoaPods 优化">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="001｜看！Swift 与 C++ 的交互性">
+    <meta property="og:description" content="Swift, C++, 编程语言设计, 系统编程安全, Dotfiles, 编译优化, CodoaPods 优化">
+    <meta name="twitter:title" content="001｜看！Swift 与 C++ 的交互性">
+    <meta name="twitter:description" content="Swift, C++, 编程语言设计, 系统编程安全, Dotfiles, 编译优化, CodoaPods 优化">
+
+<meta property="og:url" content="http://localhost/s1/001">
+    <meta property="twitter:url" content="http://localhost/s1/001">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="http://localhost/static/season-1/001/swift_cpp.jpeg">
+    <meta name="twitter:image" content="http://localhost/static/season-1/001/swift_cpp.jpeg">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="http://localhost/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="棒棒彬·数字科技参考·杂志 RSS" href="/feed.xml">
+    <style>
+      :root {
+          --primary-color: #FF7700;
+          --main-color: #ffffff;
+          --link-color: #CC0000;
+          --secondary-color: #eff3f7;
+      }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="bg-primary text-main font-bold text-center z-0" style="background-image: url('http://localhost/static/flat-mountains.svg')">
+    <header class="p-8 md:p-10">
+            <div class="text-4xl lg:text-5xl"><a href="http://localhost/">棒棒彬·数字科技参考·杂志</a></div>
+
+            <ul>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline"><a href="https://github.com/Binlogo/increment-zine">Github</a></li>
+                </ul>
+        </header>
+        <div class="w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+
+    <main class="pb-10 -translate-y-32
+                 md:-translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56
+                 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+            <div class="p-4 pb-10 md:p-8 md:pb-14 mx-4 my-6 bg-white 
+            shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="relative mx-2">
+        <a class="before:block before:absolute before:-inset-1 before:-skew-x-6 before:bg-primary relative inline-block
+                                transition sm:hover:scale-110 duration-500" href="http://localhost/s1">
+            <div class="relative text-main px-4">第一季</div>
+        </a>
+        <span class="ml-2 text-gray-700"> /  第 ⁨1⁩ 篇</span>
+    </div>
+    <div class="mt-4 mb-8 w-full border-dashed border-t border-slate-300"></div>
+    <div class="prose mx-auto">
+        <h1 class="text-center">001｜看！Swift 与 C++ 的交互性</h1>
+        <div class="relative text-sm text-gray-400">
+            <span>2021-09-25</span>
+            <span class="absolute right-2">Binlogo</span>
+        </div>
+    </div>
+    <article class="prose mx-auto my-12">
+        <h1 id="一、前言" class="flex group">
+    <span>一、前言</span>
+    <a href="#一、前言" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1><h2 id="关键字" class="flex group">
+    <span>关键字</span>
+    <a href="#关键字" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<p>Swift, C++, 编程语言设计, 系统编程安全, Dotfiles, 编译优化, CodoaPods 优化</p>
+<h2 id="导读" class="flex group">
+    <span>导读</span>
+    <a href="#导读" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<ul>
+<li>C++ 常常作为跨平台技术的首选编程语言，我们的项目也不例外，那么在和 iOS 的交互上，未来是否有可能跨过 C/Objective-C 直接和 Swift 进行互操作呢？本期的技术精选就是重点看看社区是如何讨论这个话题的。</li>
+<li>断断续续地将《斯坦福大学：系统编程的安全性》课程，以讲义阅读与摘要的方式学习完了
+<ul>
+<li>基本可以算是 Rust 编程语言“广告宣传课”，主要讲内存安全和并发安全， 从 C/C++ 和其他一些语言是如何避免安全问题延展到 Rust 的解决方式以及它的内存模型介绍：所有权、生命周期、引用。</li>
+</ul>
+</li>
+<li>前段时间做编译优化，对编译流程和 CocoaPods 的运行机制有了更近一步的了解，整理记录了一些相关的公开参考资源</li>
+</ul>
+<h2 id="见闻与碎碎念" class="flex group">
+    <span>见闻与碎碎念</span>
+    <a href="#见闻与碎碎念" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<ul>
+<li>给自己常用的一个开源工具-XcodesApp，<a href="https://github.com/RobotsAndPencils/XcodesApp/pull/153">贡献提交</a>了一个筛选 Beta/Release 版本的小功能，SwiftUI 在 macOS 的应用开发非常舒服</li>
+</ul>
+<p><img src="http://localhost/static/season-1/001/XcodesApp.png" alt="" loading="lazy"></p>
+<h1 id="二、技术新知" class="flex group">
+    <span>二、技术新知</span>
+    <a href="#二、技术新知" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1><h3 id="书籍" class="flex group">
+    <span>书籍</span>
+    <a href="#书籍" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://www.manning.com/books/rust-in-action">Rust in Action</a> - Rust 实战
+<ul>
+<li><a href="https://github.com/rust-in-action/code">书中源码</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="课程" class="flex group">
+    <span>课程</span>
+    <a href="#课程" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://binlogo.github.io/Knowledge-Track/cs/class/cs110l.html">斯坦福大学：系统编程的安全性</a></li>
+</ul>
+<div class="url-preview">
+ <div>CS 110L: Safety in Systems Programming</div>
+ <div></div>
+ <a href="https://web.stanford.edu/class/cs110l/">https://web.stanford.edu/class/cs110l/</a>
+</div>
+<h3 id="视频" class="flex group">
+    <span>视频</span>
+    <a href="#视频" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>编译优化：
+<ul>
+<li><a href="https://developer.apple.com/videos/play/wwdc2018/415/">Behind the Scenes of the Xcode Build Process</a></li>
+<li><a href="https://developer.apple.com/videos/play/wwdc2018/408/">Building Faster in Xcode</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="文章与资讯" class="flex group">
+    <span>文章与资讯</span>
+    <a href="#文章与资讯" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://swiftyfinch.github.io/en/2021-03-09-rugby-story">🏈 Rugby: Optimise CocoaPods project | Swifty Finch</a> - 寻找 CocoaPods 工程效率问题的解决方式</li>
+<li>Swift 与 C++ 的互操作：
+<ul>
+<li><a href="https://github.com/apple/swift/blob/main/docs/CppInteroperabilityManifesto.md">swift/CppInteroperabilityManifesto.md at main · apple/swift · GitHub</a></li>
+<li><a href="https://forums.swift.org/t/c-interop/25567">C++ Interop - Compiler - Swift Forums</a></li>
+</ul>
+</li>
+<li><a href="https://increment.com/">《Increment》</a> - Stripe 出品的专注于软件开发的季刊杂志</li>
+<li><a href="https://www.swiftjectivec.com/">Swiftjective-C</a> - iOS 平台开发分享集锦，对 Apple 平台特性非常关注</li>
+<li><a href="https://dotfiles.github.io/">Dotfiles: GitHub ❤ ~/ </a>- 在 GitHub 托管 dotfiles 的非官方指南
+<ul>
+<li>欢迎访问我的 <a href="https://github.com/Binlogo/Dotfiles">Dotfiles</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="开源" class="flex group">
+    <span>开源</span>
+    <a href="#开源" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://github.com/swiftyfinch/Rugby">Rugby</a> - CocoaPods 缓存加速优化</li>
+</ul>
+<h3 id="工具" class="flex group">
+    <span>工具</span>
+    <a href="#工具" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://swiftversion.net/">Swift Version</a> - Xcode 和 Swift 版本关系速查</li>
+<li><a href="https://github.com/RobotsAndPencils/XcodesApp">XcodesApp</a> - 官方源全速下载 Xcode &amp; 多版本管理</li>
+<li><a href="https://github.com/XAMPPRocky/tokei">tokei</a> - 代码量统计命令行工具</li>
+</ul>
+<h3 id="应用" class="flex group">
+    <span>应用</span>
+    <a href="#应用" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://apps.apple.com/cn/app/detailspro/id1524366536">DetailsPro</a> - 基于 Apple 平台 SwiftUI 理念的设计工具</li>
+</ul>
+<p><img src="http://localhost/static/season-1/001/ProDetails.png" alt="" loading="lazy"></p>
+<h1 id="三、技术精选" class="flex group">
+    <span>三、技术精选</span>
+    <a href="#三、技术精选" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1>
+<p><a href="https://binlogo.github.io/Knowledge-Track/cs/programming-languages/swift/swift-cpp-interoperability.html">编程语言设计：Swift 与 C++ 的互操作性</a></p>
+<p>通过社区的技术方案讨论看看编程语言设计者是如何思考 Swift 和 C++ 的互操作性，并从中更深入地理解这两门语言的技术细节，以及其中的共同点与差异点。</p>
+<div class="url-preview">
+ <div>Swift 与 C++ 的互操作性 - 棒棒彬的第二大脑</div>
+ <div></div>
+ <a href="https://binlogo.github.io/Knowledge-Track/cs/programming-languages/swift/swift-cpp-interoperability.html">https://binlogo.github.io/Knowledge-Track/cs/programming-languages/swift/swift-cpp-interoperability.html</a>
+</div>
+<hr />
+<p>感谢你的阅读，和我一起完成了本期的学习与成长。</p>
+<ul>
+<li>如果希望鼓励我，欢迎点赞、评论、<a href="https://www.yuque.com/binboy/increment-magzine">关注订阅</a>～</li>
+<li>如果觉得有收获，也欢迎分享给身边的朋友，邀他一起交流讨论</li>
+</ul>
+<p>我们下期见。</p>
+
+
+        </article>
+    <div class="my-4 w-full border-dashed border-t border-slate-300"></div>
+        <div class="flex flex-col md:flex-row">
+        <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="http://localhost/s1/002">
+                    下一篇：
+                    002｜CocoaPods 优化知多少？
+                </a>
+            </div>
+    </div>
+</main>
+
+    <footer class="relative">
+        <div class="site-footer">
+    <div>
+        分享个人数字科技参考与见闻，<a href="https://binlogo.github.io/Knowledge-Track/">棒棒彬的第二大脑</a>突触，以知识增量的方式，从时间维度衍生的在线杂志
+    </div>
+    <div>
+        Copyright © 2022 <a href="https://github.com/Binlogo">@Binlogo</a>
+    </div>
+</div>
+<link rel="stylesheet" href="http://localhost/static/main.css">
+            <a href="https://github.com/zineland" 
+           class="absolute z-20 bottom-0 w-full text-center font-bold
+                  md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent
+                  bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+        </div>
+    </footer>
+</body>
+<script src="http://localhost/static/medium-zoom.min.js"></script>
+<script src="http://localhost/static/zine.js"></script>
+</html>
+
