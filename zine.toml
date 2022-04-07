@@ -1,12 +1,10 @@
 
 [site]
-url = "http://localhost"
+url = "http://binlogo.github.io/increment-zine"
 name = "棒棒彬·数字科技参考·杂志"
 description = "分享个人技术见闻，棒棒彬的第二大脑突触"
 locale = "zh"
-menu = [
-  { name = "Github", url = "https://github.com/Binlogo/increment-zine" },
-]
+menu = [{ name = "Github", url = "https://github.com/Binlogo/increment-zine" }]
 
 [theme]
 primary-color = "#FF7700"
