@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<title>004｜编码即写作，思考到表达</title>
+    <meta name="description" content="开源, 写作, Bazel, Firefox, DoH">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="004｜编码即写作，思考到表达">
+    <meta property="og:description" content="开源, 写作, Bazel, Firefox, DoH">
+    <meta name="twitter:title" content="004｜编码即写作，思考到表达">
+    <meta name="twitter:description" content="开源, 写作, Bazel, Firefox, DoH">
+
+<meta property="og:url" content="https://binlogo.github.io/increment-zine/s1/004">
+    <meta property="twitter:url" content="https://binlogo.github.io/increment-zine/s1/004">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://binlogo.github.io/increment-zine/static/season-1/004/think_write.png">
+    <meta name="twitter:image" content="https://binlogo.github.io/increment-zine/static/season-1/004/think_write.png">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="https://binlogo.github.io/increment-zine/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="棒棒彬·数字科技参考·杂志 RSS" href="/feed.xml">
+    <style>
+      :root {
+          --primary-color: #FF7700;
+          --main-color: #ffffff;
+          --link-color: #CC0000;
+          --secondary-color: #eff3f7;
+      }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="bg-primary text-main font-bold text-center z-0" style="background-image: url('https://binlogo.github.io/increment-zine/static/flat-mountains.svg')">
+    <header class="p-8 md:p-10">
+            <div class="text-4xl lg:text-5xl"><a href="https://binlogo.github.io/increment-zine/">棒棒彬·数字科技参考·杂志</a></div>
+
+            <ul>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline"><a href="https://github.com/Binlogo/increment-zine">Github</a></li>
+                </ul>
+        </header>
+        <div class="w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+
+    <main class="pb-10 -translate-y-32
+                 md:-translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56
+                 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+            <div class="p-4 pb-10 md:p-8 md:pb-14 mx-4 my-6 bg-white 
+            shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="relative mx-2">
+        <a class="before:block before:absolute before:-inset-1 before:-skew-x-6 before:bg-primary relative inline-block
+                                transition sm:hover:scale-110 duration-500" href="https://binlogo.github.io/increment-zine/s1">
+            <div class="relative text-main px-4">第一季</div>
+        </a>
+        <span class="ml-2 text-gray-700"> /  第 ⁨4⁩ 篇</span>
+    </div>
+    <div class="mt-4 mb-8 w-full border-dashed border-t border-slate-300"></div>
+    <div class="prose mx-auto">
+        <h1 class="text-center">004｜编码即写作，思考到表达</h1>
+        <div class="relative text-sm text-gray-400">
+            <span>2021-10-24</span>
+            <span class="absolute right-2">Binlogo</span>
+        </div>
+    </div>
+    <article class="prose mx-auto my-12">
+        <h2 id="关键字" class="flex group">
+    <span>关键字</span>
+    <a href="#关键字" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<p>开源, 写作, Bazel, Firefox, DoH</p>
+<h2 id="见闻与碎碎念" class="flex group">
+    <span>见闻与碎碎念</span>
+    <a href="#见闻与碎碎念" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<ul>
+<li>
+<p>受 <a href="https://github.com/limboy">@limboy</a> 开的新坑 <a href="https://bytedancer.io/">ByteDancer.io</a> 站点启发，给第二大脑也加入了评论功能，欢迎交流</p>
+<ul>
+<li>采用 <a href="https://giscus.app/">giscus</a> 搭建，基于 <a href="https://docs.github.com/discussions">GitHub Discussions</a> 驱动</li>
+</ul>
+</li>
+<li>
+<p>有自己一个小贡献（支持 Beta/Release 的筛选）的 <a href="https://github.com/RobotsAndPencils/XcodesApp/releases/tag/v1.2.0b8">Xcodes App v1.2</a> 版本发布了🎉。 </p>
+<ul>
+<li>参与开源是一件有趣的事儿，收获最大的就是如何提升协同效率
+<a href="https://twitter.com/mattkiazyk/status/1451552042636427283?s=20"><img src="https://binlogo.github.io/increment-zine/static/season-1/004/xcodes_v1_2_released.png" alt="" loading="lazy"></a></li>
+</ul>
+</li>
+<li>
+<p>逛商场时无意间看到华为出的新车，2021 年了，塑料感还那么重，档位切换改为旋转的交互，太奇怪了，反馈感非常差。</p>
+</li>
+<li>
+<p>吴军老师新专栏《硅谷来信3》完更了，想着又重温了《硅谷来信1》，除了对于行业、科技、职业等高屋建瓴的见解，让我在通勤路上更享受的是对生活、艺术、经历的分享与感悟</p>
+<ul>
+<li>我的陪审员经历</li>
+<li>澳大利亚日记</li>
+<li>阿拉斯加日记</li>
+<li>在米其林三星餐厅能吃到什么</li>
+<li>红醇美酒——如何品葡萄酒</li>
+<li>卢浮宫三宝</li>
+<li>徕卡摄影课</li>
+<li>……</li>
+</ul>
+</li>
+<li>
+<p>《少有人走的路》这本书——正式加入想读清单（想了又想</p>
+</li>
+<li>
+<p>VSCode 的括号对配置选项支持开启后，代码看着活泼了不少</p>
+</li>
+</ul>
+<p><img src="https://binlogo.github.io/increment-zine/static/season-1/004/vscode_bracket_pair.png" alt="" loading="lazy"></p>
+<p><img src="https://binlogo.github.io/increment-zine/static/season-1/004/vscode_bracket_pair_demo.png" alt="" loading="lazy">	</p>
+<h1 id="技术新知" class="flex group">
+    <span>技术新知</span>
+    <a href="#技术新知" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1><h3 id="书籍" class="flex group">
+    <span>书籍</span>
+    <a href="#书籍" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://book.douban.com/subject/34875994/">《Software Engineering at Google》 (豆瓣)</a></li>
+</ul>
+<h3 id="课程" class="flex group">
+    <span>课程</span>
+    <a href="#课程" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>
+<p><a href="https://github.com/ferrous-systems/teaching-material">Ferrous Teaching Material</a> - Rust 教学资源，非常全面</p>
+<ul>
+<li><a href="https://github.com/ferrous-systems/elements-of-rust">ferrous-systems/elements-of-rust</a> - Rust 风格与小技巧</li>
+</ul>
+</li>
+<li>
+<p><a href="https://exercism.org/">Exercism.org</a> - 开源&amp;非盈利的编程语言练习平台，导师代码评审 🌟🌟🌟🌟🌟</p>
+</li>
+</ul>
+<h3 id="视频" class="flex group">
+    <span>视频</span>
+    <a href="#视频" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=gVdkJu3QRA4">BazelCon 2019 Day 1: Porting iOS Apps to Bazel + Q&amp;A</a></li>
+</ul>
+<h3 id="文章" class="flex group">
+    <span>文章</span>
+    <a href="#文章" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://mozilla.github.io/firefox-browser-architecture/">Firefox Browser Architecture</a> - Firefox 架构组技术调研合集</li>
+<li><a href="https://folyd.com/blog/rust-pin-unpin/">Rust的Pin与Unpin</a></li>
+</ul>
+<h4 id="编程语言" class="flex group">
+    <span>编程语言</span>
+    <a href="#编程语言" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h4>
+<ul>
+<li>Rust 中的数据结构在内存中是如何排布的？
+<a href="https://binlogo.github.io/Knowledge-Track/programming-languages/rust/concepts/memory_layout.html"><img src="https://binlogo.github.io/increment-zine/static/season-1/004/rust_memory_layout.png" alt="" loading="lazy"></a></li>
+</ul>
+<h3 id="开源" class="flex group">
+    <span>开源</span>
+    <a href="#开源" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://ci.swift.org/">Swift CI</a> - Swift 社区官方的持续构建集成平台</li>
+<li><a href="https://github.com/tdlib/td">TDLib (Telegram Database library) </a> - Telegram 客户端跨平台 C++ 库</li>
+<li><a href="https://github.com/BLAKE3-team/BLAKE3">BLAKE3-team/BLAKE3</a> - BLAKE3 加密哈希算法官方实现</li>
+</ul>
+<h3 id="工具" class="flex group">
+    <span>工具</span>
+    <a href="#工具" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>
+<p><a href="https://excalidraw.com/">Excalidraw</a> - 手绘风格的画图应用，适合流程图、架构图绘制与展示</p>
+</li>
+<li>
+<p><a href="https://cheats.rs/">Rust Cheat Sheet</a> - <a href="https://cheats.rs/rust_cheat_sheet.pdf">PDF</a> - 速查表</p>
+</li>
+<li>
+<p><a href="https://rust.extension.sh/">Rust Search Extension</a> - 浏览器搜索扩展插件</p>
+</li>
+<li>
+<p><a href="https://rust-lang.github.io/rustup/index.html">Rustup</a> 自动补全安装指南：<code>rustup help completions</code></p>
+</li>
+<li>
+<p>基于 Bazel 编译系统支持的商业服务</p>
+<ul>
+<li><a href="https://flare.build/">FLARE.BUILD</a> - Bazel 编译系统支持服务</li>
+<li><a href="https://www.buildbuddy.io/">BuildBuddy | Bazel at Enterprise Scale</a> - Bazel 编译系统支持服务</li>
+</ul>
+</li>
+<li>
+<p><a href="https://dns.google/">Google Public DNS</a> - Google 的 DNS 查询服务</p>
+<ul>
+<li><a href="https://developers.google.com/speed/public-dns/docs/doh">DNS-over-HTTPS (DoH)</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://developers.cloudflare.com/1.1.1.1/encrypted-dns">Cloudflare-Encrypt DNS traffic</a> - Cloudflare 提供的 DNS 查询服务</p>
+</li>
+</ul>
+<h3 id="公众号" class="flex group">
+    <span>公众号</span>
+    <a href="#公众号" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>
+<p>程序人生（programmer_life）</p>
+<ul>
+<li><a href="https://github.com/tyrchen">陈天（TyrChen）</a>老师的微信公众号，几乎篇篇精选，值得花上一段完整时间认真阅读</li>
+<li><a href="https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzA3NDM0ODQwMw==&amp;action=getalbum&amp;album_id=1701598373151047680&amp;scene=173&amp;from_msgid=2649828871&amp;from_itemidx=1&amp;count=3&amp;nolastread=1#wechat_redirect">Rust系列文章</a></li>
+</ul>
+</li>
+</ul>
+<h1 id="三、技术精选" class="flex group">
+    <span>三、技术精选</span>
+    <a href="#三、技术精选" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1>
+<p>精选按语：本周是 10.24 程序员文化周，分享一篇关于写作的文章：<a href="https://mp.weixin.qq.com/s/oCEE82Cah2vsE1ivfuLXzg">《美团人的写作基本功是如何练成的》</a>，写作作为一门通识技能，对于任何一个需要沟通或协作的工作都至关重要。在 GitHub 这个全球开源协作平台上，可以看得出或流行或优秀的开源项目，结构精巧、内容完整的 README 或技术文档都是标配。</p>
+<div class="url-preview">
+ <div>美团人的写作基本功是如何练成的</div>
+ <div>员工的写作能力，对于一家业务复杂程度高，执行链条长的企业来说意义重大。</div>
+ <a href="https://mp.weixin.qq.com/s/oCEE82Cah2vsE1ivfuLXzg">https://mp.weixin.qq.com/s/oCEE82Cah2vsE1ivfuLXzg</a>
+</div>
+<h2 id="部分精要摘选" class="flex group">
+    <span>部分精要摘选</span>
+    <a href="#部分精要摘选" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<blockquote>
+<p>写作是我要带头苦练的基本功，是非常基本的能力。因为一个事情要积累的话，就得书面化。写作看起来和业务没什么关系，但这是一个非常共通的、极其基础的、每天都在发生的事情。大家认为有很多事情不统一、不稳定，没有足够书面化是原因之一。写作是广泛使用的，它适用于每个职能和业务。另一个角度，你要对外传播就得写下来，你想不清楚，就写不出来，或者写出来也觉得很不满意，真正靠即兴发挥是不太靠谱的，要把东西写出来，首先要想的清楚。—— 王兴</p>
+</blockquote>
+<pre><code>● 什么是写作？（xie zuo，协作😄）
+  ○ 用文字去达到合作、说服、调动、拒绝、通知、解释的目的 
+● 为什么要写作？ 
+  ○ 高效写作能力，是澄清问题和达成共识的工具
+  ○ 【短期来看】写作可以提升工作开展的效率 
+    ■ (1)帮助结构化思维，以更有逻辑的方式去梳理并呈工作成果。
+    ■ (2)帮助各方迅速对齐信息，再做更有深度的讨论与决策。
+    ■ (3)会议纪要向各相关方传达，推动下一步工作，落实具体事项。
+  ○ 【长期来看】写作是公司和个人发展与迭代的制胜法宝 
+    ■ (1)文档积累：是反思与自我提升的基础，可以经常复盘。
+    ■ (2)沉淀方法论：这些思考与经验，为团队新人、新事提供很好的教材与发展基础。
+    ■ (3)决策依据：长期保留的会议纪要，一方面避免相关方决策后出现反复，另一方面可以作为未来复盘战略决策或业务思考的重要依据。
+● 什么情况下要求写作？ 
+  ○ (1)会议活动
+  ○ (2)工作汇报：系统化地复盘、总结工作进展或思考，以日志、周报、述职、专题复盘、主题分享等形式，留存宝贵的经验教训。
+  ○ (3)客户沟通
+  ○ (4)项目专题：项目设置文档负责人，负责最终项目产出的工作文档，记录每一个阶段SMART的目标并将文档留存，完成后进行整体输出
+● 写作要遵循哪些原则？ 
+  ○ 原则一：Don't Make Me Think
+  ○ 原则二：规范
+  ○ 原则三：结构化
+  ○ 原则四：简洁（KISS：Keep It Short and Simple）
+● 写作有哪些步骤和要点？ 
+  ○ 构思 -&gt; 写作 -&gt; 修改
+  ○ 建议原文查看更多
+</code></pre>
+<hr />
+<p>感谢你的阅读，和我一起完成了本期的学习与成长。</p>
+<ul>
+<li>如果希望鼓励我，欢迎点赞、评论、<a href="https://www.yuque.com/binboy/increment-magzine">关注订阅</a>～</li>
+<li>如果觉得有收获，也欢迎分享给身边的朋友，邀他一起交流讨论</li>
+</ul>
+<p>我们下期见。</p>
+
+
+        </article>
+    <div class="my-4 w-full border-dashed border-t border-slate-300"></div>
+        <div class="flex flex-col md:flex-row">
+        <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="https://binlogo.github.io/increment-zine/s1/003">
+                    上一篇：
+                    003｜Telegram-iOS 源码导读
+                </a>
+            </div>
+    </div>
+</main>
+
+    <footer class="relative">
+        <div class="site-footer">
+    <div>
+        分享个人数字科技参考与见闻，<a href="https://binlogo.github.io/Knowledge-Track/">棒棒彬的第二大脑</a>突触，以知识增量的方式，从时间维度衍生的在线杂志
+    </div>
+    <div>
+        Copyright © 2022 <a href="https://github.com/Binlogo">@Binlogo</a>
+    </div>
+</div>
+<link rel="stylesheet" href="https://binlogo.github.io/increment-zine/static/main.css">
+            <a href="https://github.com/zineland" 
+           class="absolute z-20 bottom-0 w-full text-center font-bold
+                  md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent
+                  bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+        </div>
+    </footer>
+</body>
+<script src="https://binlogo.github.io/increment-zine/static/medium-zoom.min.js"></script>
+<script src="https://binlogo.github.io/increment-zine/static/zine.js"></script>
+</html>
+
