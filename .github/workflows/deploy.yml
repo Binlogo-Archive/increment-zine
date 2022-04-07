@@ -12,10 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-
+      - uses: actions/cache@v2
+        id: cache
+        with:
+          path: |
+            ~/.cargo/bin/zine
+          key: ${{ runner.os }}-cargo-binary-dependency
       - name: Install Rust (rustup)
         run: rustup update stable --no-self-update && rustup default stable
       - name: Install zine
+        if: steps.cache.outputs.cache-hit != 'true'
         run: cargo install zine
       - name: Build zine
         run: zine build
