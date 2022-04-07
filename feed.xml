@@ -2,23 +2,23 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <title>棒棒彬·数字科技参考·杂志</title>
     <subtitle>分享个人技术见闻，棒棒彬的第二大脑突触</subtitle>
-    <updated>2022-04-07T00:16:52.579061784+00:00</updated>
-    <id>http://localhost</id>
-    <link href="http://localhost/feed.xml" rel="self" type="application/atom+xml" />
-    <link href="http://localhost" rel="alternate" type="text/html" />
+    <updated>2022-04-07T00:26:53.597664859+00:00</updated>
+    <id>http://binlogo.github.io/increment-zine</id>
+    <link href="http://binlogo.github.io/increment-zine/feed.xml" rel="self" type="application/atom+xml" />
+    <link href="http://binlogo.github.io/increment-zine" rel="alternate" type="text/html" />
     <generator uri="https://github.com/zineland/zine" version="0.3.1">zine</generator>
     <author>
         <name>棒棒彬·数字科技参考·杂志</name>
-        <uri>http://localhost</uri>
+        <uri>http://binlogo.github.io/increment-zine</uri>
     </author>
 
     <entry>
         <title>002｜CocoaPods 优化知多少？</title>
-        <link rel="alternate" href="http://localhost/s1/002" type="text/html" title="002｜CocoaPods 优化知多少？" />
+        <link rel="alternate" href="http://binlogo.github.io/increment-zine/s1/002" type="text/html" title="002｜CocoaPods 优化知多少？" />
         <published>2021-10-01</published>
         <updated>2021-10-01</updated>
-        <id>http://localhost/s1/002</id>
-        <content type="html" xml:base="http://localhost/s1/002">
+        <id>http://binlogo.github.io/increment-zine/s1/002</id>
+        <content type="html" xml:base="http://binlogo.github.io/increment-zine/s1/002">
             <![CDATA[<h1 id="一、前言" class="flex group">
     <span>一、前言</span>
     <a href="#一、前言" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
@@ -160,11 +160,11 @@
     </entry>
     <entry>
         <title>001｜看！Swift 与 C++ 的交互性</title>
-        <link rel="alternate" href="http://localhost/s1/001" type="text/html" title="001｜看！Swift 与 C++ 的交互性" />
+        <link rel="alternate" href="http://binlogo.github.io/increment-zine/s1/001" type="text/html" title="001｜看！Swift 与 C++ 的交互性" />
         <published>2021-09-25</published>
         <updated>2021-09-25</updated>
-        <id>http://localhost/s1/001</id>
-        <content type="html" xml:base="http://localhost/s1/001">
+        <id>http://binlogo.github.io/increment-zine/s1/001</id>
+        <content type="html" xml:base="http://binlogo.github.io/increment-zine/s1/001">
             <![CDATA[<h1 id="一、前言" class="flex group">
     <span>一、前言</span>
     <a href="#一、前言" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
