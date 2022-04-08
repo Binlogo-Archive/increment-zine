@@ -1,0 +1,9 @@
+[[article]]
+slug = "005"
+file = "005.md"
+title = "005｜Rust 1.56.0 - 2021 Editon 更新"
+author = "Binlogo"
+cover = "/static/season-2/005/rust.png"
+pub_date = "2021-10-31"
+publish = true
+featured = true

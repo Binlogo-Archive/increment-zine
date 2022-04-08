@@ -20,3 +20,9 @@ slug = "s1"
 number = 1
 title = "第一季"
 path = "content/season-1"
+
+[[season]]
+slug = "s2"
+number = 2
+title = "第二季"
+path = "content/season-2"
