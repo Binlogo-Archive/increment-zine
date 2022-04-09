@@ -17,3 +17,13 @@ cover = "/static/season-2/006/llvm.webp"
 pub_date = "2021-11-07"
 publish = true
 featured = true
+
+[[article]]
+slug = "007"
+file = "007.md"
+title = "007｜系统编程的安全性"
+author = "Binlogo"
+cover = "/static/season-2/007/stanford-university-logo.png"
+pub_date = "2021-11-14"
+publish = true
+featured = true
