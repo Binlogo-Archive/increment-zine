@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<title>006｜如何学习编译器： LLVM</title>
+    <meta name="description" content="LLVM, 编译器, 远程工作, Jamstack, M1 性能,">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="006｜如何学习编译器： LLVM">
+    <meta property="og:description" content="LLVM, 编译器, 远程工作, Jamstack, M1 性能,">
+    <meta name="twitter:title" content="006｜如何学习编译器： LLVM">
+    <meta name="twitter:description" content="LLVM, 编译器, 远程工作, Jamstack, M1 性能,">
+
+<meta property="og:url" content="https://binlogo.github.io/increment-zine/s2/006">
+    <meta property="twitter:url" content="https://binlogo.github.io/increment-zine/s2/006">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://binlogo.github.io/increment-zine/static/season-2/006/llvm.webp">
+    <meta name="twitter:image" content="https://binlogo.github.io/increment-zine/static/season-2/006/llvm.webp">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="https://binlogo.github.io/increment-zine/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="棒棒彬·数字科技参考·杂志 RSS" href="/feed.xml">
+    <style>
+      :root {
+          --primary-color: #FF7700;
+          --main-color: #ffffff;
+          --link-color: #CC0000;
+          --secondary-color: #eff3f7;
+      }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="bg-primary text-main font-bold text-center z-0" style="background-image: url('https://binlogo.github.io/increment-zine/static/flat-mountains.svg')">
+    <header class="p-8 md:p-10">
+            <div class="text-4xl lg:text-5xl"><a href="https://binlogo.github.io/increment-zine/">棒棒彬·数字科技参考·杂志</a></div>
+
+            <ul>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline"><a href="https://binlogo.github.io/increment-zine/about">关于</a></li>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline"><a href="https://github.com/Binlogo/increment-zine">Github</a></li>
+                </ul>
+        </header>
+        <div class="w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+
+    <main class="pb-10 -translate-y-32
+                 md:-translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56
+                 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+            <div class="p-4 pb-10 md:p-8 md:pb-14 mx-4 my-6 bg-white 
+            shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="relative mx-2">
+        <a class="before:block before:absolute before:-inset-1 before:-skew-x-6 before:bg-primary relative inline-block
+                                transition sm:hover:scale-110 duration-500" href="https://binlogo.github.io/increment-zine/s2">
+            <div class="relative text-main px-4">第二季</div>
+        </a>
+        <span class="ml-2 text-gray-700"> /  第 ⁨2⁩ 篇</span>
+    </div>
+    <div class="mt-4 mb-8 w-full border-dashed border-t border-slate-300"></div>
+    <div class="prose mx-auto">
+        <h1 class="text-center">006｜如何学习编译器： LLVM</h1>
+        <div class="relative text-sm text-gray-400">
+            <span>2021-11-07</span>
+            <span class="absolute right-2">Binlogo</span>
+        </div>
+    </div>
+    <article class="prose mx-auto my-12">
+        <h2 id="关键字" class="flex group">
+    <span>关键字</span>
+    <a href="#关键字" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<p>LLVM, 编译器, 远程工作, Jamstack, M1 性能,</p>
+<h2 id="见闻与碎碎念" class="flex group">
+    <span>见闻与碎碎念</span>
+    <a href="#见闻与碎碎念" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<ul>
+<li>
+<p>给 <a href="https://exercism.org/">Exercism.org</a> 这个开源、非盈利的编程练习平台开启了月度捐款，全屏的满足感 🎉
+<img src="https://binlogo.github.io/increment-zine/static/season-2/006/exercism-sponsoring.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>Jon Gjengset 非常鼓励对他的分享与创作进行再解释和再传播。一来这本身是种深度学习的方式，二来能够通过更丰富的表达方式，帮助更多的人学习。——对这个观点十分赞同，并进一步坚定了我整理分享这份技术参考周刊的想法：既加深了自己对知识体系构建的学习与记忆，也能够和另一部分人共同学习。因此，也欢迎将本技术周刊分享给更多的同路人。
+<a href="https://twitter.com/jonhoo/status/1454852348287750146"><img src="https://binlogo.github.io/increment-zine/static/season-2/006/jonhoo_psa.png" alt="" loading="lazy"></a></p>
+</li>
+<li>
+<p>GitHub 的产品设计师 Brian Lovin 更新了他的<a href="https://brianlovin.com/">个人站点</a>，打磨得像应用级的产品，简约精致
+<a href="https://brianlovin.com/"><img src="https://binlogo.github.io/increment-zine/static/season-2/006/brian_personal_site.png" alt="" loading="lazy"></a></p>
+</li>
+<li>
+<p>微软发布了一款新产品 <a href="http://aka.ms/loop">Loop</a>，一个类似 Notion 的创作工具&amp;平台。</p>
+</li>
+<li>
+<p>Swift Package Index 对 M1 系列芯片 MacBook 做了性能评测，M1 体验是真的香！
+<img src="https://binlogo.github.io/increment-zine/static/season-2/006/m1_build_time.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>本周过生日 🎂，礼物收到了一个得到专栏：《吴军·硅谷来信3》和一个 Switch 游戏：马力欧卡丁车8豪华版，虽都是数字虚拟产品，在我心里却都价值不菲，内心十分满足。</p>
+</li>
+<li>
+<p>本周印象最深刻最受启发的几封《吴军·硅谷来信3》 ：</p>
+<ul>
+<li>
+<p>科学、学术和科技创新有什么区别？</p>
+<ul>
+<li>简单地讲：科学就是把钱变成知识，技术就是把知识变成钱。</li>
+</ul>
+</li>
+<li>
+<p>为什么小习惯最值得改变？</p>
+<ul>
+<li>
+<ol>
+<li>让自己深处一个友好的环境</li>
+</ol>
+</li>
+<li>
+<ol start="2">
+<li>找到坏习惯的替代方法</li>
+</ol>
+</li>
+<li>
+<ol start="3">
+<li>把改变习惯的注意力放在开始，而非完成</li>
+</ol>
+</li>
+<li>
+<ol start="4">
+<li>养成习惯不怕慢，就怕停下来，甚至是回头路，即坚持。</li>
+</ol>
+</li>
+<li>两年前，受到启发自己开始创建第二大脑，坚持记录TIL（今天我学到了什么），形成固定的工作流，慢慢就变成了习惯。</li>
+</ul>
+</li>
+<li>
+<p>为什么不能作弊？</p>
+<ul>
+<li>作弊于人于己于社会都无益处，社会信任感越充足，沟通协作成本就越低。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="技术新知" class="flex group">
+    <span>技术新知</span>
+    <a href="#技术新知" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1><h3 id="书籍" class="flex group">
+    <span>书籍</span>
+    <a href="#书籍" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>在读：<a href="https://book.douban.com/subject/35055885/">《程序员修炼之道――从小工到专家（20周年纪念版）（第2版）（英文版）》</a></li>
+<li>想读：<a href="https://livebook.manning.com/book/the-programmers-brain/the-programmer-s-brain/">《The Programmer’s Brain》</a></li>
+</ul>
+<h3 id="课程" class="flex group">
+    <span>课程</span>
+    <a href="#课程" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://lowlevelbits.org/how-to-learn-compilers-llvm-edition/">HOW TO LEARN COMPILERS: LLVM EDITION</a> - 编译器学习路径推荐（本期精选）</li>
+<li><a href="https://github.com/dtolnay/rust-quiz">Rust Quiz - David Tolnay</a> - 中等难度以上的小测试</li>
+</ul>
+<h3 id="视频" class="flex group">
+    <span>视频</span>
+    <a href="#视频" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://youtu.be/rDoqT-a6UFg">Visualizing memory layout of Rust’s data types</a> - 可视化介绍 Rust 数据类型的内存布局</li>
+</ul>
+<h3 id="文章" class="flex group">
+    <span>文章</span>
+    <a href="#文章" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://binlogo.github.io/Knowledge-Track/work/articles/how-to-get-a-remote-job-by-writing-in-english.html">如何通过英文写作找到国外的远程工作机会</a></li>
+<li><a href="https://blog.swiftpackageindex.com/posts/m1-pro-and-m1-max-build-and-test-benchmarks">M1 Pro and M1 Max Xcode Build and Test Benchmarks</a></li>
+<li><a href="https://medium.com/@otukof/build-your-text-editor-with-rust-678a463f968b">Build Your Text Editor With Rust!</a> - 使用 Rust 写一个类似 vim 的命令行编辑器</li>
+</ul>
+<h3 id="开源" class="flex group">
+    <span>开源</span>
+    <a href="#开源" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://primer.style/">Primer Design System</a> - GitHub 的设计系统</li>
+<li><a href="https://jamstack.org/">For fast and secure sites | Jamstack</a> - Javascript，API 和 Markup，Web 开发模式</li>
+</ul>
+<h3 id="博客" class="flex group">
+    <span>博客</span>
+    <a href="#博客" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>GitHub 产品设计师的个人站点，打磨得像是应用级的产品</li>
+</ul>
+<div class="url-preview">
+ <div>Brian Lovin</div>
+ <div>Product designer, podcaster, and writer, living in San Francisco.</div>
+ <a href="https://brianlovin.com/">https://brianlovin.com/</a>
+</div>
+<ul>
+<li>Amo 的站点，rust 和系统编程相关技术分享，产出高、质量优</li>
+</ul>
+<div class="url-preview">
+ <div>fasterthanli.me</div>
+ <div>amos loves to tinker</div>
+ <a href="https://fasterthanli.me/">https://fasterthanli.me/</a>
+</div>
+<h1 id="技术精选" class="flex group">
+    <span>技术精选</span>
+    <a href="#技术精选" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1>
+<p>编译原理相关知识，一直是许多开发者好奇的神秘领域，除了难啃的「龙书」外，有什么更好的学习方式和学习路径吗？本期精选整理翻译 Alex Denisov 新出炉的一篇新文章《<a href="https://lowlevelbits.org/how-to-learn-compilers-llvm-edition/">HOW TO LEARN COMPILERS: LLVM EDITION</a>》。</p>
+<p>点击链接查看：</p>
+<div class="url-preview">
+ <div>编译原理 - 棒棒彬的第二大脑</div>
+ <div></div>
+ <a href="https://binlogo.github.io/Knowledge-Track/cs/compiliers.html">https://binlogo.github.io/Knowledge-Track/cs/compiliers.html</a>
+</div>
+<hr />
+<p>感谢你的阅读，和我一起完成了本期的学习与成长。</p>
+<ul>
+<li>如果希望鼓励我，欢迎点赞、评论、<a href="https://www.yuque.com/binboy/increment-magzine">关注订阅</a>～</li>
+<li>如果觉得有收获，也欢迎分享给身边的朋友，邀他一起交流讨论</li>
+</ul>
+<p>我们下期见。</p>
+
+
+        </article>
+    <div class="my-4 w-full border-dashed border-t border-slate-300"></div>
+        <div class="flex flex-col md:flex-row">
+        <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="https://binlogo.github.io/increment-zine/s2/005">
+                    上一篇：
+                    005｜Rust 1.56.0 - 2021 Editon 更新
+                </a>
+            </div>
+    </div>
+</main>
+
+    <footer class="relative">
+        <div class="site-footer">
+    <div>
+        分享个人数字科技参考与见闻，<a href="https://binlogo.github.io/Knowledge-Track/">棒棒彬的第二大脑</a>突触，以知识增量的方式，从时间维度衍生的在线杂志
+    </div>
+    <div>
+        Copyright © 2022 <a href="https://github.com/Binlogo">@Binlogo</a>
+    </div>
+</div>
+<link rel="stylesheet" href="https://binlogo.github.io/increment-zine/static/main.css">
+            <a href="https://github.com/zineland" 
+           class="absolute z-20 bottom-0 w-full text-center font-bold
+                  md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent
+                  bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+        </div>
+    </footer>
+</body>
+<script src="https://binlogo.github.io/increment-zine/static/medium-zoom.min.js"></script>
+<script src="https://binlogo.github.io/increment-zine/static/zine.js"></script>
+</html>
+
