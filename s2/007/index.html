@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+<title>007｜系统编程的安全性</title>
+    <meta name="description" content="工业软件, 双十一, 全球学习周, 精力管理, 阅读工作流">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="007｜系统编程的安全性">
+    <meta property="og:description" content="工业软件, 双十一, 全球学习周, 精力管理, 阅读工作流">
+    <meta name="twitter:title" content="007｜系统编程的安全性">
+    <meta name="twitter:description" content="工业软件, 双十一, 全球学习周, 精力管理, 阅读工作流">
+
+<meta property="og:url" content="https://binlogo.github.io/increment-zine/s2/007">
+    <meta property="twitter:url" content="https://binlogo.github.io/increment-zine/s2/007">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:image" content="https://binlogo.github.io/increment-zine/static/season-2/007/stanford-university-logo.png">
+    <meta name="twitter:image" content="https://binlogo.github.io/increment-zine/static/season-2/007/stanford-university-logo.png">
+    <link rel="icon" type="image/png" href="/favicon.ico">
+    <link rel="stylesheet" href="https://binlogo.github.io/increment-zine/static/zine.css">
+    <link rel="alternate" type="application/atom+xml" title="棒棒彬·数字科技参考·杂志 RSS" href="/feed.xml">
+    <style>
+      :root {
+          --primary-color: #FF7700;
+          --main-color: #ffffff;
+          --link-color: #CC0000;
+          --secondary-color: #eff3f7;
+      }
+    </style>
+</head>
+
+<body class="h-full bg-secondary">
+    <div class="bg-primary text-main font-bold text-center z-0" style="background-image: url('https://binlogo.github.io/increment-zine/static/flat-mountains.svg')">
+    <header class="p-8 md:p-10">
+            <div class="text-4xl lg:text-5xl"><a href="https://binlogo.github.io/increment-zine/">棒棒彬·数字科技参考·杂志</a></div>
+
+            <ul>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline"><a href="https://binlogo.github.io/increment-zine/about">关于</a></li>
+                <li class="inline-block mt-6 mx-5 text-base hover:underline"><a href="https://github.com/Binlogo/increment-zine">Github</a></li>
+                </ul>
+        </header>
+        <div class="w-full h-32 md:h-36 lg:h-44 xl:h-48 2xl:h-56"></div>
+    </div>
+
+    <main class="pb-10 -translate-y-32
+                 md:-translate-y-32 lg:-translate-y-36 xl:-translate-y-44 2xl:-translate-y-56
+                 mx-auto sm:max-w-scree-md md:max-w-screen-lg">
+            <div class="p-4 pb-10 md:p-8 md:pb-14 mx-4 my-6 bg-white 
+            shadow-xl shadow-slate-700/10 ring-1 ring-gray-900/5">
+    <div class="relative mx-2">
+        <a class="before:block before:absolute before:-inset-1 before:-skew-x-6 before:bg-primary relative inline-block
+                                transition sm:hover:scale-110 duration-500" href="https://binlogo.github.io/increment-zine/s2">
+            <div class="relative text-main px-4">第二季</div>
+        </a>
+        <span class="ml-2 text-gray-700"> /  第 ⁨3⁩ 篇</span>
+    </div>
+    <div class="mt-4 mb-8 w-full border-dashed border-t border-slate-300"></div>
+    <div class="prose mx-auto">
+        <h1 class="text-center">007｜系统编程的安全性</h1>
+        <div class="relative text-sm text-gray-400">
+            <span>2021-11-14</span>
+            <span class="absolute right-2">Binlogo</span>
+        </div>
+    </div>
+    <article class="prose mx-auto my-12">
+        <h2 id="关键字" class="flex group">
+    <span>关键字</span>
+    <a href="#关键字" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<p>工业软件, 双十一, 全球学习周, 精力管理, 阅读工作流</p>
+<h2 id="见闻与碎碎念" class="flex group">
+    <span>见闻与碎碎念</span>
+    <a href="#见闻与碎碎念" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h2>
+<ul>
+<li>看了《<a href="https://mp.weixin.qq.com/s/rqzUHTreS_eYnphXbpiaVQ">聊聊中国工业软件这个行业</a>》这篇文章，非常受触动，无比敬佩扎根于基础研究的学者们。期待我们在互联网蓬勃发展的同时，其他像工业软件等领域也能齐头并进，后来居上。</li>
+</ul>
+<blockquote>
+<p>近代人类工业文明的一些诸多突破都是建立在基础研究之上，例如麦克斯韦方程的发现，才有了人类现在辉煌的无线通信技术，经典力学尤其是空气动力学的突破，人类的飞机才能翱翔蓝天，香农定理为信息通信产业奠定了坚实的理论基础…..</p>
+</blockquote>
+<ul>
+<li>
+<p>双十一凑了个小热闹，虽然没有买什么实物，但是入手和续期了一些软件应用服务：</p>
+<ul>
+<li><a href="https://tide.fm/">潮汐</a>：续费了一年 Plus 会员，更好地「睡眠 · 专注 · 冥想 · 呼吸」，<a href="https://binlogo.github.io/post/meditation-keep/">提升幸福力</a>。</li>
+<li>GoodNotes 5：心心念念的一款手写笔记应用，趁半价入手了，记录更多灵感。</li>
+<li>iCloud 云存储：家庭共享容量由 200G 升级为了 2T，数据++，资金–😭。</li>
+<li><a href="https://www.yuque.com/login?platform=wechat&amp;inviteToken=f6e959505e77f114312173f53ec62f7ba8daba0ed81beaf7dda5da95286080b9">语雀</a>：为了提升写作和阅读体验，升级了个<a href="https://www.yuque.com/yuque/ng1qth/member-privilege">会员</a>，更好地敦促自己将此周刊更新到 100 期。</li>
+</ul>
+</li>
+<li>
+<p>滴答清单又新增了个心仪已久的功能：四象限，深得我心</p>
+</li>
+<li>
+<p>这个小周刊收到「iOS成长之路」公众号（<a href="https://github.com/zhangferry/iOSWeeklyLearning">iOS 摸鱼周报</a>）编辑邀请推荐，预计会在下一期见🎉</p>
+<ul>
+<li>虽然只是个小推荐，但也算是一种认可，多少有些开心</li>
+<li>自己积累的同时期望影响帮助到更多人，价值感本身就是回报</li>
+<li>未来也会更加注重外部的反馈，不断提升和优化，欢迎大家的交流与建议</li>
+</ul>
+</li>
+<li>
+<p>前段听说<a href="https://www.blender.org/press/apple-joins-blender-development-fund/">苹果加入了Blender基金会</a>，于是推荐<a href="https://xiaozhuanlan.com/u/souffle">交互设计师女友</a>试着学了下这个开源的 3D 设计软件，本周她完成了一个教程和小作品，反馈比 C4D 易用许多，期待她的下一个作品。
+<img src="https://binlogo.github.io/increment-zine/static/season-2/007/blender-try.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>无意间逛到了深圳百度楼下的「南山书房」，预约进去体验了一下，感受非常不错，氛围除了看书或学习，几乎不敢大喘气，上下楼梯都小心翼翼，哈哈～开放&amp;免费&amp;24小时
+<img src="https://binlogo.github.io/increment-zine/static/season-2/007/nanshan-study.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>本周是字节跳动全球学习周，邀请了诸多内外的嘉宾分享，收获颇丰</p>
+<ul>
+<li>
+<p><a href="https://mubu.com/doc/vWIbDCFrdU">刘润·每个人都是自己的 CEO</a> 
+<img src="https://binlogo.github.io/increment-zine/static/season-2/007/be-own-self-mindmap.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p><a href="https://mubu.com/doc/33fG02HvfvE">张遇升·如何成为精力管理的高手</a></p>
+<p><img src="https://binlogo.github.io/increment-zine/static/season-2/007/energy-master-mindmap.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>项亮·工程师的深度和广度</p>
+</li>
+<li>
+<p>……</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>题外话：若有兴趣加入字节跳动，欢迎找我<a href="https://job.toutiao.com/s/RHabqyY">内推</a></p>
+<ul>
+<li>
+<p>看到一个「<a href="https://mp.weixin.qq.com/s/lioyPd8RRv3XUyTkaJFDDQ">我的阅读流</a>」分享，非常详尽，有几点比较受启发，打算学习升级下目前既有的知识沉淀工作流，之后找机会也总结分享下自己从构建第二大脑到周刊输出的一些点滴。</p>
+<p><img src="https://binlogo.github.io/increment-zine/static/season-2/007/reading-workflow.png" alt="" loading="lazy"></p>
+</li>
+<li>
+<p>照例分享下本周印象最深刻最受启发的几封《吴军·硅谷来信3》 ：</p>
+<ul>
+<li>
+<p>什么样的心态称得上是“企业主人公”心态？</p>
+<ul>
+<li>首先要各司其职，尽自己的义务，将工作做到行业最优；而不是指手画脚。</li>
+<li>任何一家机构，权、责、利都是相一致的——只是会以不同的节奏体现。</li>
+</ul>
+</li>
+<li>
+<p>美国为什么要打南北战争？</p>
+<ul>
+<li>更了解了这段美国历史，以及「当奴隶制与自由制度存在于同一经济体中，前者不仅比后者更有生产效率，而且复制后者的成功非常快」这个让人有点意外的发现。</li>
+</ul>
+</li>
+<li>
+<p>一个人怎么对待自己心中的“上帝”？</p>
+<ul>
+<li>对于自然规律的敬畏之心</li>
+</ul>
+</li>
+<li>
+<p>「数据资产」系列</p>
+</li>
+<li>
+<p>「南极之旅」系列</p>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="技术新知" class="flex group">
+    <span>技术新知</span>
+    <a href="#技术新知" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1><h3 id="书籍" class="flex group">
+    <span>书籍</span>
+    <a href="#书籍" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>🔲<a href="https://book.douban.com/subject/34947377/">《在线视频技术精要》</a></li>
+</ul>
+<h3 id="视频" class="flex group">
+    <span>视频</span>
+    <a href="#视频" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>
+<p>✅ 故事：<a href="https://youtu.be/XkFulQe9EVE">哈佛学生这可怕的超充实一天</a></p>
+</li>
+<li>
+<p>✅ <a href="https://www.bilibili.com/video/BV1p54y1X7fY">音视频开发工作经验分享</a> - 从 Android 客户端转到字节跳动音视频 SDK 开发的经验分享</p>
+</li>
+</ul>
+<h3 id="产品" class="flex group">
+    <span>产品</span>
+    <a href="#产品" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>
+<p><a href="https://mentorcruise.com/">MentorCruise - Connecting Mentors &amp; Mentees in Tech</a> - 连接导师的平台</p>
+</li>
+<li>
+<p><a href="https://substack.com/">Substack</a> - Newsletter 付费订阅平台</p>
+</li>
+<li>
+<p><a href="https://www.apple.com/business/">Apple at Work</a> - Apple 的 ToB 服务</p>
+<ul>
+<li><a href="https://www.apple.com/business/essentials/">Apple Business Essentials</a> —— Apple 提供的小微企业 IT 服务支持</li>
+</ul>
+</li>
+</ul>
+<h3 id="资源" class="flex group">
+    <span>资源</span>
+    <a href="#资源" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>
+<p>Rust 字节跳动镜像源：https://rsproxy.cn/</p>
+</li>
+<li>
+<p><a href="https://blog.csdn.net/leixiaohua1020">雷霄骅的专栏</a> ——「中国传媒大学一个搞广播电视相关的视音频技术的学生」🌟🌟🌟</p>
+<ul>
+<li>据说是入门音视频领域的必读经典。<a href="https://www.zhihu.com/question/49211380">R.I.P.</a></li>
+</ul>
+</li>
+<li>
+<p><a href="https://glumes.com/">音视频开发进阶</a> —— 一个抖音多媒体开发工程师的技术交流分享</p>
+</li>
+</ul>
+<h3 id="公众号" class="flex group">
+    <span>公众号</span>
+    <a href="#公众号" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li>音视频开发进阶</li>
+</ul>
+<h3 id="社区" class="flex group">
+    <span>社区</span>
+    <a href="#社区" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://www.cncf.io/">CNCF</a> - 云原生计算基金会, Linux 基金会的一部分</li>
+</ul>
+<h3 id="工具" class="flex group">
+    <span>工具</span>
+    <a href="#工具" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h3>
+<ul>
+<li><a href="https://justgetflux.com/">f.lux</a> - 改善长时间看屏幕对眼睛和睡眠的伤害，降低蓝光</li>
+</ul>
+<h1 id="备忘温故" class="flex group">
+    <span>备忘温故</span>
+    <a href="#备忘温故" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1>
+<ul>
+<li><a href="https://zh.wikipedia.org/wiki/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97">消息中间件 - aka: 消息队列(Message queue)</a>
+<ul>
+<li>一种进程间通信或同一进程的不同线程间的通信方式，提供了异步的通信协议</li>
+</ul>
+</li>
+</ul>
+<pre><code>为什么要用消息中间件？
+  1. 系统解耦
+  2. 异步调用
+  3. 流量削峰
+</code></pre>
+<h1 id="技术精选" class="flex group">
+    <span>技术精选</span>
+    <a href="#技术精选" class="ml-2 inline-flex items-center opacity-0 border-0 group-hover:opacity-100" aria-label="Anchor">
+        <div class="w-6 h-6 text-slate-400 ring-1 ring-slate-900/5 rounded-md shadow-sm flex items-center justify-center hover:ring-slate-900/10 hover:shadow hover:text-slate-700">
+            <svg width="12" height="12" fill="none" aria-hidden="true">
+                <path d="M3.75 1v10M8.25 1v10M1 3.75h10M1 8.25h10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+            </svg>
+        </div>
+    </a>
+</h1>
+<p>本期精选早些时候学习完成的斯坦福大学 CS110L 课程：系统编程的安全性。主要讲内存安全和并发安全，再结合一些案例讲了下高可用性和可扩展性，以及信息安全，几乎算是 Rust 编程语言“广告宣传课”，从 C/C++ 和其他一些语言是如何避免安全问题延展到 Rust 的解决方式以及它的内存模型介绍：所有权、生命周期、引用。学习完该课程基本就可以理解 Rust 为什么这些年越来越受欢迎和推崇，以及它解决了什么问题了。</p>
+<p>欢迎进入点击进入第二大脑查看：</p>
+<div class="url-preview">
+ <div>CS 110L: Safety in Systems Programming - 棒棒彬的第二大脑</div>
+ <div></div>
+ <a href="https://binlogo.github.io/Knowledge-Track/cs/class/cs110l.html">https://binlogo.github.io/Knowledge-Track/cs/class/cs110l.html</a>
+</div>
+<hr />
+<p>感谢你的阅读，和我一起完成了本期的学习与成长。</p>
+<ul>
+<li>如果希望鼓励我，欢迎点赞、评论、<a href="https://www.yuque.com/binboy/increment-magzine">关注订阅</a>～</li>
+<li>如果觉得有收获，也欢迎分享给身边的朋友，邀他一起交流讨论</li>
+</ul>
+<p>我们下期见。</p>
+
+
+        </article>
+    <div class="my-4 w-full border-dashed border-t border-slate-300"></div>
+        <div class="flex flex-col md:flex-row">
+        <a class="inline my-1 py-2 px-4 font-bold text-slate-700 hover:underline" href="https://binlogo.github.io/increment-zine/s2/006">
+                    上一篇：
+                    006｜如何学习编译器： LLVM
+                </a>
+            </div>
+    </div>
+</main>
+
+    <footer class="relative">
+        <div class="site-footer">
+    <div>
+        分享个人数字科技参考与见闻，<a href="https://binlogo.github.io/Knowledge-Track/">棒棒彬的第二大脑</a>突触，以知识增量的方式，从时间维度衍生的在线杂志
+    </div>
+    <div>
+        Copyright © 2022 <a href="https://github.com/Binlogo">@Binlogo</a>
+    </div>
+</div>
+<link rel="stylesheet" href="https://binlogo.github.io/increment-zine/static/main.css">
+            <a href="https://github.com/zineland" 
+           class="absolute z-20 bottom-0 w-full text-center font-bold
+                  md:text-slate-100 md:opacity-10 md:hover:opacity-50 md:bg-transparent
+                  bg-primary p-2 text-main">
+            Proudly powered by Zine.
+        </a>
+        </div>
+    </footer>
+</body>
+<script src="https://binlogo.github.io/increment-zine/static/medium-zoom.min.js"></script>
+<script src="https://binlogo.github.io/increment-zine/static/zine.js"></script>
+</html>
+
