@@ -7,3 +7,13 @@ cover = "/static/season-2/005/rust.png"
 pub_date = "2021-10-31"
 publish = true
 featured = true
+
+[[article]]
+slug = "006"
+file = "006.md"
+title = "006｜如何学习编译器： LLVM"
+author = "Binlogo"
+cover = "/static/season-2/006/llvm.webp"
+pub_date = "2021-11-07"
+publish = true
+featured = true

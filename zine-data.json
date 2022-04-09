@@ -4,6 +4,10 @@
       "CS 110L: Safety in Systems Programming - 棒棒彬的第二大脑",
       ""
     ],
+    "https://binlogo.github.io/Knowledge-Track/cs/compiliers.html": [
+      "编译原理 - 棒棒彬的第二大脑",
+      ""
+    ],
     "https://binlogo.github.io/Knowledge-Track/cs/programming-languages/swift/swift-cpp-interoperability.html": [
       "Swift 与 C++ 的互操作性 - 棒棒彬的第二大脑",
       ""
@@ -15,6 +19,14 @@
     "https://blog.rust-lang.org/2021/10/21/Rust-1.56.0.html": [
       "Announcing Rust 1.56.0 and Rust 2021 | Rust Blog",
       "Empowering everyone to build reliable and efficient software."
+    ],
+    "https://brianlovin.com/": [
+      "Brian Lovin",
+      "Product designer, podcaster, and writer, living in San Francisco."
+    ],
+    "https://fasterthanli.me/": [
+      "fasterthanli.me",
+      "amos loves to tinker"
     ],
     "https://mp.weixin.qq.com/s/oCEE82Cah2vsE1ivfuLXzg": [
       "美团人的写作基本功是如何练成的",
