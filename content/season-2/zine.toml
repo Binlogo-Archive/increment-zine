@@ -27,3 +27,13 @@ cover = "/static/season-2/007/stanford-university-logo.png"
 pub_date = "2021-11-14"
 publish = true
 featured = true
+
+[[article]]
+slug = "008"
+file = "008.md"
+title = "008｜第二大脑体系结构新升级"
+author = "Binlogo"
+cover = "/static/season-2/008/second-brain-structure.png"
+pub_date = "2021-11-21"
+publish = true
+featured = true
